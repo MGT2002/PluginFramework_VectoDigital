@@ -17,10 +17,8 @@ namespace PluginFramework_VectoDigital.Servicies
             if (File.Exists(ConfigFilePath))
             {
                 var json = File.ReadAllText(ConfigFilePath);
-                List<Plugin> t = JsonSerializer.Deserialize<List<Plugin>>(json)
-                    ?? new List<Plugin>();
-
-                plugins = t.ConvertToPlugins();
+                plugins = JsonSerializer.Deserialize<ConcurrentDictionary<string, Plugin>>(json)
+                    ?? new ConcurrentDictionary<string, Plugin>();                
             }
             else
             {
